@@ -1,0 +1,19 @@
+.ad-block {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.ad-placeholder {
+  border: 1px dashed #ccc;
+  padding: 20px;
+  color: #777;
+  font-size: 14px;
+  background: #fafafa;
+}
+
+/* Optional sizes */
+.ad-article-top,
+.ad-article-middle,
+.ad-article-bottom {
+  min-height: 120px;
+}

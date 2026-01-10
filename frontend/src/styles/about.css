@@ -1,0 +1,277 @@
+/* About Page Styles */
+
+.about-container {
+  width: 100%;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+/* Hero Section */
+.about-hero {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+  color: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.95;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Hero */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 50px 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+/* General Section Styles */
+.about-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #1e3a5f;
+}
+
+/* Mission & Vision Section */
+.mission-vision .section-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.mission-box,
+.vision-box {
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-left: 5px solid #2d5a8c;
+  border-radius: 4px;
+}
+
+.mission-box h2,
+.vision-box h2 {
+  font-size: 1.8rem;
+  margin-top: 0;
+  color: #1e3a5f;
+}
+
+.mission-box p,
+.vision-box p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .mission-vision .section-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.service-card {
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(45, 90, 140, 0.15);
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e3a5f;
+  margin: 15px 0;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .about-section h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Benefits List */
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.benefits-list li:last-child {
+  border-bottom: none;
+}
+
+.check-icon {
+  color: #2d5a8c;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.benefits-list strong {
+  color: #1e3a5f;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+  color: #ffffff;
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.cta-section h2 {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  opacity: 0.95;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 15px 40px;
+  border-radius: 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.cta-button.primary {
+  background-color: #ffffff;
+  color: #1e3a5f;
+}
+
+.cta-button.primary:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button.secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.cta-button.secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .cta-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+
+  .cta-section {
+    padding: 50px 20px;
+  }
+}
+
+/* General Responsive Typography */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 40px 20px;
+  }
+
+  .about-section h2 {
+    font-size: 1.8rem;
+  }
+}

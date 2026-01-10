@@ -1,0 +1,136 @@
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f8;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 220px;
+  background: #111;
+  color: #fff;
+  padding: 20px;
+}
+
+.admin-logo {
+  margin-bottom: 30px;
+}
+
+.admin-sidebar nav a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+
+.admin-sidebar nav a.active {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Main area */
+.admin-main {
+  flex: 1;
+}
+
+/* Top bar */
+.admin-navbar {
+  background: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Content */
+.admin-content {
+  padding: 20px;
+}
+
+/* ADMIN PAGE */
+.admin-page {
+  padding: 30px;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* HEADING */
+.admin-page h1 {
+  margin-bottom: 20px;
+}
+
+/* FORM */
+.admin-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.admin-form textarea {
+  resize: vertical;
+}
+
+.admin-form button {
+  width: fit-content;
+  padding: 10px 18px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-form button:hover {
+  opacity: 0.9;
+}
+
+/* TABLE */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.admin-table th {
+  background: #f1f1f1;
+}
+
+.admin-table button {
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.admin-table button:first-child {
+  background: #007bff;
+  color: #fff;
+}
+
+.admin-table button:last-child {
+  background: #dc3545;
+  color: #fff;
+}
+
