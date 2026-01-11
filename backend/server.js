@@ -12,29 +12,31 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("ISource Backend Running");
+  res.send("ISource Backend Running 🚀");
 });
 
+// API routes
 app.use("/api/categories", categoryRoutes);
 app.use("/api/articles", articleRoutes);
+
+// Sitemap
 app.use("/", sitemapRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
+// Robots.txt (dynamic for production)
 app.get("/robots.txt", (req, res) => {
   res.type("text/plain");
   res.send(`
 User-agent: *
 Allow: /
 
-Sitemap: http://localhost:5000/sitemap.xml
+Sitemap: ${process.env.BASE_URL}/sitemap.xml
   `);
 });
 
+// ✅ IMPORTANT: export app (NO app.listen)
+export default app;
