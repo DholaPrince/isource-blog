@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import AdminLayout from "../components/AdminLayout";
 
+const API = import.meta.env.VITE_API_URL;
+
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +14,7 @@ const Categories = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/categories");
+      const res = await fetch(`${API}/api/categories`);
       const data = await res.json();
       setCategories(data);
     } catch (error) {
@@ -29,7 +31,7 @@ const Categories = () => {
     e.preventDefault();
     if (!name.trim()) return alert("Enter category name");
 
-    await fetch("http://localhost:5000/api/categories", {
+    await fetch(`${API}/api/categories`, {
       method: "POST",
       headers: {
   "Content-Type": "application/json",
@@ -49,7 +51,7 @@ const Categories = () => {
     const newName = prompt("Edit category name", oldName);
     if (!newName) return;
 
-    await fetch(`http://localhost:5000/api/categories/${id}`, {
+    await fetch(`${API}/api/categories/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json",
         "x-admin-password": localStorage.getItem("adminPassword"),
@@ -66,7 +68,7 @@ const Categories = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this category?")) return;
 
-    await fetch(`http://localhost:5000/api/categories/${id}`, {
+    await fetch(`${API}/api/categories/${id}`, {
       method: "DELETE",
       headers: {
     "x-admin-password": localStorage.getItem("adminPassword"),

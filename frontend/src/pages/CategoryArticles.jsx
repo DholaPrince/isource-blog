@@ -5,6 +5,8 @@ import { useParams, Link } from "react-router-dom"
 import AdBlock from "../components/AdBlock"
 import "../styles/CategoryArticles.css"
 
+const API = import.meta.env.VITE_API_URL;
+
 const updateMeta = (name, content) => {
   let tag = document.querySelector(`meta[name="${name}"]`)
   if (!tag) {
@@ -75,7 +77,7 @@ const CategoryArticles = () => {
   useEffect(() => {
     if (!slug) return
 
-    fetch(`http://localhost:5000/api/articles/category/${slug}`)
+    fetch(`${API}/api/articles/category/${slug}`)
       .then((res) => res.json())
       .then((data) => setArticles(data || []))
       .catch((err) => console.error(err))

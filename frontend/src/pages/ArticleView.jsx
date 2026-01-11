@@ -5,13 +5,15 @@ import { useEffect, useState } from "react"
 import "../styles/ArticleView.css"
 import VideoModal from "../components/VideoModal"
 
+const API = import.meta.env.VITE_API_URL;
+
 const ArticleView = () => {
   const { slug } = useParams()
   const [article, setArticle] = useState(null)
 const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/articles/${slug}`)
+    fetch(`${API}/api/articles/${slug}`)
       .then((res) => res.json())
       .then((data) => {
         setArticle(data)

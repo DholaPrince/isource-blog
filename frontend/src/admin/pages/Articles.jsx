@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import AdminLayout from "../components/AdminLayout";
 
+const API = import.meta.env.VITE_API_URL;
+
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -27,7 +29,7 @@ youtubeUrl: "",
 
  const fetchArticles = async () => {
   try {
-    const res = await fetch("http://localhost:5000/api/articles", {
+    const res = await fetch(`${API}/api/articles`, {
       headers: {
         "x-admin-password": localStorage.getItem("adminPassword"),
       },
@@ -46,7 +48,7 @@ youtubeUrl: "",
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/categories");
+      const res = await fetch(`${API}/api/categories`);
       const data = await res.json();
       setCategories(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -95,8 +97,8 @@ youtubeUrl: article.youtubeUrl || "",
     e.preventDefault();
 
     const url = editingId
-      ? `http://localhost:5000/api/articles/${editingId}`
-      : "http://localhost:5000/api/articles";
+  ? `${API}/api/articles/${editingId}`
+  : `${API}/api/articles`;
 
     const method = editingId ? "PUT" : "POST";
 
@@ -118,7 +120,7 @@ youtubeUrl: article.youtubeUrl || "",
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this article?")) return;
 
-    await fetch(`http://localhost:5000/api/articles/${id}`, {
+    await fetch(`${API}/api/articles/${id}`,  {
   method: "DELETE",
   headers: {
     "x-admin-password": localStorage.getItem("adminPassword"),

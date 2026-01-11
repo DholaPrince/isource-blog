@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/home.css";
 
+const API = import.meta.env.VITE_API_URL;
+
 function Home() {
   const [categories, setCategories] = useState([]);
   const [articles, setArticles] = useState([]);
@@ -20,7 +22,7 @@ function Home() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/categories");
+      const res = await fetch(`${API}/api/categories`);
       const data = await res.json();
       setCategories(Array.isArray(data) ? data : []);
       setStats((prev) => ({
@@ -34,7 +36,7 @@ function Home() {
 
   const fetchArticles = async () => {
   try {
-    const res = await fetch("http://localhost:5000/api/articles/latest");
+    const res = await fetch(`${API}/api/articles/latest`);
     const data = await res.json();
 
     const articlesArray = Array.isArray(data) ? data : [];
