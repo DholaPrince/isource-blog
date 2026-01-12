@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/sitemap.xml", async (req, res) => {
   try {
-    const baseUrl = "http://localhost:5173"; // change to domain later
+    const baseUrl = process.env.FRONTEND_URL; // change to domain later
 
     const articles = await Article.find({}, "slug updatedAt");
     const categories = await Category.find({}, "slug");
