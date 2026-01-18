@@ -49,7 +49,7 @@
 }
 
 .article-header-content {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -87,32 +87,232 @@
   font-style: italic;
 }
 
+/* ================= ARTICLE LAYOUT ================= */
+
+.article-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+}
+
 /* ================= ARTICLE CONTENT ================= */
 
 .article-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 60px 20px;
+  width: 100%;
 }
 
 .article-body {
-  line-height: 1.8;
+  line-height: 1.85;
   font-size: 16px;
   color: #333333;
-  word-spacing: 0.05em;
 }
 
-.article-body p {
-  margin: 0 0 24px 0;
+.article-paragraph {
+  margin-bottom: 22px;
   text-align: justify;
-  text-justify: inter-word;
 }
 
-.article-body p:last-child {
-  margin-bottom: 0;
+.article-heading {
+  font-size: 28px;
+  margin: 36px 0 18px;
+  color: #111;
+  font-weight: 700;
+}
+
+.article-subheading {
+  font-size: 22px;
+  margin: 28px 0 14px;
+  color: #222;
+  font-weight: 600;
+}
+
+/* ================= VIDEO TRUST CARD ================= */
+
+.article-video-card {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f7f9fc, #ffffff);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.video-card-left {
+  display: flex;
+  align-items: flex-start;
+}
+
+.video-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ff0000;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-card-right h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+}
+
+.video-card-right p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.watch-video-btn {
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.watch-video-btn:hover {
+  background: #cc0000;
+}
+
+  /* ================= SHARE BUTTONS ================= */
+
+.article-share {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.share-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-right: 6px;
+}
+
+.share-btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.share-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.share-btn.whatsapp {
+  background: #25d366;
+  color: white;
+}
+
+.share-btn.twitter {
+  background: #1da1f2;
+  color: white;
+}
+
+.share-btn.facebook {
+  background: #1877f2;
+  color: white;
+}
+
+.share-btn.copy {
+  background: #444;
+  color: white;
+}
+
+/* ================= SIDEBAR ================= */
+
+.article-sidebar {
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+  border-left: 2px solid #f1f1f1;
+  padding-left: 24px;
+}
+
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #111;
+}
+
+.sidebar-empty {
+  font-size: 14px;
+  color: #777;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-list li {
+  margin-bottom: 14px;
+}
+
+.sidebar-list a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: inherit;
+}
+
+.sidebar-article-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  line-height: 1.4;
+}
+
+.sidebar-article-title:hover {
+  text-decoration: underline;
+}
+
+.sidebar-article-date {
+  font-size: 12px;
+  color: #777;
 }
 
 /* ================= RESPONSIVE DESIGN ================= */
+
+@media (max-width: 900px) {
+  .article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .article-sidebar {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #eee;
+    padding-top: 24px;
+  }
+}
 
 @media (max-width: 768px) {
   .article-header {
@@ -130,7 +330,7 @@
     gap: 10px;
   }
 
-  .article-content {
+  .article-layout {
     padding: 40px 16px;
   }
 
@@ -139,8 +339,16 @@
     line-height: 1.75;
   }
 
-  .article-body p {
-    margin-bottom: 20px;
+  .article-paragraph {
+    margin-bottom: 18px;
+  }
+
+  .article-heading {
+    font-size: 24px;
+  }
+
+  .article-subheading {
+    font-size: 20px;
   }
 
   .ad-container {
@@ -171,7 +379,7 @@
     flex-wrap: wrap;
   }
 
-  .article-content {
+  .article-layout {
     padding: 30px 12px;
   }
 
@@ -180,10 +388,17 @@
     line-height: 1.7;
   }
 
-  .article-body p {
-    margin-bottom: 18px;
+  .article-paragraph {
+    margin-bottom: 16px;
     text-align: left;
-    text-justify: auto;
+  }
+
+  .article-heading {
+    font-size: 20px;
+  }
+
+  .article-subheading {
+    font-size: 18px;
   }
 
   .ad-container {
@@ -196,7 +411,9 @@
 
 @media print {
   .ad-container,
-  .ad-slot {
+  .ad-slot,
+  .article-sidebar,
+  .article-video-card {
     display: none;
   }
 

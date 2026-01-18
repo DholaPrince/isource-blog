@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import "../styles/navbar.css"
+import Iogo from "../assets/logo2.png"
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -20,9 +21,9 @@ function Navbar() {
       <div className="navbar-container">
         {/* Logo */}
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          <span className="logo-icon">📚</span>
-          iSource
-        </Link>
+  <img src={Iogo} alt="iSource logo" className="logo-icon" />
+  iSource
+</Link>
 
         {/* Hamburger Menu */}
         <div className={`hamburger ${menuOpen ? "active" : ""}`} onClick={toggleMenu}>

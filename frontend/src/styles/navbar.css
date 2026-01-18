@@ -25,6 +25,7 @@
   align-items: center;
   gap: 0.5rem;
   transition: opacity 0.3s ease;
+  line-height: 1;
 }
 
 .navbar-logo:hover {
@@ -32,8 +33,12 @@
 }
 
 .logo-icon {
-  font-size: 1.8rem;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
 }
+
 
 .navbar-menu {
   list-style: none;
@@ -143,10 +148,12 @@
     overflow: hidden;
     transition: max-height 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    visibility: hidden;
   }
 
   .navbar-menu.active {
     max-height: 500px;
+    visibility: visible;
   }
 
   .navbar-item {
@@ -178,7 +185,8 @@
   }
 
   .logo-icon {
-    font-size: 1.5rem;
+    width: 22px;
+    height: 22px;
   }
 
   .navbar-menu {

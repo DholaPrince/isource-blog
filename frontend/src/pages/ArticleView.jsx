@@ -9,8 +9,10 @@ const API = import.meta.env.VITE_API_URL;
 
 const ArticleView = () => {
   const { slug } = useParams()
-  const [article, setArticle] = useState(null)
-const [showVideo, setShowVideo] = useState(false);
+  const [article, setArticle] = useState(null);
+  const [relatedArticles, setRelatedArticles] = useState([]);
+  const [showVideo, setShowVideo] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     fetch(`${API}/api/articles/${slug}`)
@@ -114,6 +116,79 @@ const [showVideo, setShowVideo] = useState(false);
     return `https://www.youtube.com/embed/${videoId}`
   }
 
+  /* ================= CONTENT FORMATTER ================= */
+
+  const renderContent = (text) => {
+    if (!text) return null;
+
+    const paragraphs = text.split("\n").filter(Boolean);
+
+    return paragraphs.map((para, i) => {
+      if (para.startsWith("## ")) {
+        return (
+          <h2 key={i} className="article-heading">
+            {para.replace("## ", "")}
+          </h2>
+        );
+      }
+
+      if (para.startsWith("### ")) {
+        return (
+          <h3 key={i} className="article-subheading">
+            {para.replace("### ", "")}
+          </h3>
+        );
+      }
+
+      return (
+        <p key={i} className="article-paragraph">
+          {para}
+        </p>
+      );
+    });
+  };
+
+  /* ================= READING TIME ================= */
+
+  const calculateReadingTime = (text) => {
+    if (!text) return "1 min read";
+    const words = text.trim().split(/\s+/).length;
+    const minutes = Math.ceil(words / 200);
+    return `${minutes} min read`;
+  };
+
+  const readingTime = calculateReadingTime(article.content);
+
+  /* ================= SHARE HANDLERS ================= */
+
+  const pageUrl = window.location.href;
+  const encodedUrl = encodeURIComponent(pageUrl);
+  const encodedTitle = encodeURIComponent(article.title);
+
+  const shareWhatsapp = () => {
+    window.open(`https://wa.me/?text=${encodedTitle}%20${encodedUrl}`, "_blank");
+  };
+
+  const shareTwitter = () => {
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+      "_blank"
+    );
+  };
+
+  const shareFacebook = () => {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      "_blank"
+    );
+  };
+
+  const copyLink = async () => {
+    await navigator.clipboard.writeText(pageUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <>
     <div className="article-page">
@@ -131,42 +206,118 @@ const [showVideo, setShowVideo] = useState(false);
             <span className="article-date">{formatDate(article.createdAt)}</span>
             <span className="article-separator">•</span>
             <span className="article-author">By ISource</span>
+            <span className="article-separator">•</span>
+            <span className="article-reading-time">🕒 {readingTime}</span>
           </div>
         </div>
       </header>
 
-      {/* Main Article Content */}
-      <article className="article-content">
-        <div className="article-body">
-          <p>{article.content}</p>
+      {/* Article Body Layout */}
+        <div className="article-layout">
+          {/* MAIN CONTENT */}
+          <article className="article-content">
+            <div className="article-body">{renderContent(article.content)}</div>
+
+            {/* 🎥 VIDEO TRUST CARD */}
+            {article.youtubeUrl && (
+              <div className="article-video-card">
+                <div className="video-card-left">
+                  <div className="video-avatar">
+                    <span>YT</span>
+                  </div>
+                </div>
+
+                <div className="video-card-right">
+                  <h4>{article.youtubeTitle || "Watch Expert Video"}</h4>
+                  <p>
+                    This article references insights from a trusted YouTube
+                    creator. Watch the full explanation below.
+                  </p>
+
+                  <button
+                    className="watch-video-btn"
+                    onClick={() => setShowVideo(true)}
+                  >
+                    ▶ Watch Video
+                  </button>
+                </div>
+              </div>
+            )}
+            {/* 🔗 SHARE BUTTONS */}
+            <div className="article-share">
+              <span className="share-label">Share:</span>
+
+              <button
+                className="share-btn whatsapp"
+                onClick={shareWhatsapp}
+                aria-label="Share on WhatsApp"
+              >
+                WhatsApp
+              </button>
+
+              <button
+                className="share-btn twitter"
+                onClick={shareTwitter}
+                aria-label="Share on Twitter"
+              >
+                Twitter
+              </button>
+
+              <button
+                className="share-btn facebook"
+                onClick={shareFacebook}
+                aria-label="Share on Facebook"
+              >
+                Facebook
+              </button>
+
+              <button
+                className="share-btn copy"
+                onClick={copyLink}
+                aria-label="Copy link"
+              >
+                {copied ? "Copied!" : "Copy Link"}
+              </button>
+            </div>
+          </article>
+
+          {/* SIDEBAR */}
+          <aside className="article-sidebar">
+            <h3 className="sidebar-title">Latest in this category</h3>
+
+            {relatedArticles.length === 0 ? (
+              <p className="sidebar-empty">No related articles yet.</p>
+            ) : (
+              <ul className="sidebar-list">
+                {relatedArticles.map((item) => (
+                  <li key={item._id}>
+                    <a href={`/article/${item.slug}`}>
+                      <span className="sidebar-article-title">
+                        {item.title}
+                      </span>
+                      <span className="sidebar-article-date">
+                        {formatDate(item.createdAt)}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </aside>
         </div>
-      </article>
 
-      {article.youtubeUrl && (
-  <div className="article-video-card">
-    <h3>{article.youtubeTitle || "Watch Related Video"}</h3>
+        {/* Middle Advertisement */}
+        <div className="ad-container ad-middle">
+          <div className="ad-slot ad-middle" />
+        </div>
 
-    <button
-      className="watch-video-btn"
-      onClick={() => setShowVideo(true)}
-    >
-      ▶ Watch Video
-    </button>
-  </div>
-)}
-
-      {/* Middle Advertisement */}
-      <div className="ad-container ad-middle">
-        <div className="ad-slot ad-middle" />
+        {/* Bottom Advertisement */}
+        <div className="ad-container ad-bottom">
+          <div className="ad-slot ad-bottom" />
+        </div>
       </div>
 
-      {/* Bottom Advertisement */}
-      <div className="ad-container ad-bottom">
-        <div className="ad-slot ad-bottom" />
-      </div>
-    </div>
-
-    {/* 🎥 VIDEO MODAL */}
+      {/* 🎥 VIDEO MODAL */}
       {showVideo && (
         <VideoModal
           videoUrl={getEmbedUrl(article.youtubeUrl)}

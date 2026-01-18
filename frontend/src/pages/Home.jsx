@@ -14,6 +14,17 @@ function Home() {
   });
 
   useEffect(() => {
+    document.title =
+    "iSource Articles | Quality Knowledge, One Article at a Time";
+
+  const metaDesc = document.querySelector("meta[name='description']");
+  if (metaDesc) {
+    metaDesc.setAttribute(
+      "content",
+      "Discover high-quality articles across multiple categories. Read insightful content and grow with iSource."
+    );
+  }
+
     fetchCategories();
     fetchArticles();
   }, []);
