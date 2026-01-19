@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/sitemap.xml",
+      "destination": "https://isource-blog.vercel.app/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "https://isource-blog.vercel.app/robots.txt"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

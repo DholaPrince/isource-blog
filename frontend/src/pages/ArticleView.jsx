@@ -42,6 +42,20 @@ const ArticleView = () => {
       })
   }, [slug])
 
+  /* ================= FETCH RELATED ARTICLES (SAME CATEGORY) ================= */
+
+  useEffect(() => {
+    if (!article?.category) return;
+
+    fetch(`${API}/api/articles?category=${encodeURIComponent(article.category)}&limit=6`)
+      .then((res) => res.json())
+      .then((data) => {
+        const filtered = data.filter((item) => item.slug !== slug);
+        setRelatedArticles(filtered.slice(0, 5));
+      })
+      .catch(() => setRelatedArticles([]));
+  }, [article, slug]);
+
   useEffect(() => {
     if (!article) return
 
